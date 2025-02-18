@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('student', function (Blueprint $table) {
-            $table->primary("student_id",10);
-            $table->string("major",100);
-            $table->enum("student", ["scholar","regular"]);
+        Schema::create('students', function (Blueprint $table) {
+            $table->id();
+            $table->string('major',50);
+            $table->enum('student',['scholar', 'regular']);
             $table->timestamps();
 
-            
+            $table->unsignedBigInteger('student_ID');
         });
     }
 
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('student');
+        Schema::dropIfExists('students');
     }
 };

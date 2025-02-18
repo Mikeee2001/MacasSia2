@@ -11,9 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('borrower', function (Blueprint $table) {
-            $table->foreignId("");
+        Schema::create('book_category', function (Blueprint $table) {
+            $table->id();
+            $table->string("CategoryName");
             $table->timestamps();
+
+            $table->unsignedBigInteger("book_categoryID");
+            $table->foreign("book_categoryID")->references("id")->on("book")->onDelete("cascade")->onUpdate("cascade");
         });
     }
 
@@ -22,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('borrower');
+        Schema::dropIfExists('book_category');
     }
 };

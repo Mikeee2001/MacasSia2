@@ -11,9 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('book_copy_', function (Blueprint $table) {
-            $table->id();
+        Schema::create('borrower_book_copy', function (Blueprint $table) {
+            $table->id('id');
+            $table->date('Duedate');
             $table->timestamps();
+
+            $table->unsignedBigInteger("borrower_copyID");
+            $table->foreign("borrower_copyID")->references("id")->on("borrower")->onDelete("cascade")->onUpdate("cascade");
+
         });
     }
 
@@ -22,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('book_copy_');
+        Schema::dropIfExists('borrower_book_copy');
     }
 };

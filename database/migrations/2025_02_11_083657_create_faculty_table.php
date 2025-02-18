@@ -11,8 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('author', function (Blueprint $table) {
+        Schema::create('faculty', function (Blueprint $table) {
             $table->id();
+            $table->string("deaprtment",50);
+            $table->enum("faculty",["partime", "fulltime"]);
+            $table->unsignedBigInteger("Borrower");
+            $table->foreign("Borrower")->references("id")->on("borrower")->onDelete("cascade");
             $table->timestamps();
         });
     }
@@ -22,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('author');
+        Schema::dropIfExists('faculty');
     }
 };
